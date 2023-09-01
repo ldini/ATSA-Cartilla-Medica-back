@@ -1,3 +1,4 @@
+import { Horario } from "src/horario/entities/horario.entity";
 import { PrestadorInstitucion } from "src/prestador/entities/prestador-institucion.entity";
 import { Prestador } from "src/prestador/entities/prestador.entity";
 import { Telefono } from "src/telefono/entities/telefono.entity";
@@ -20,9 +21,14 @@ export class Institucion {
   @OneToMany(() => Telefono, (telefono) => telefono.institucion)
   telefonos:Telefono[]
 
+  @OneToMany(() => Horario, (horario) => horario.institucion)
+  horarios:Horario[];
+
   @OneToMany(
     () => PrestadorInstitucion,
     (prestadorInstitucion) => prestadorInstitucion.institucion,
   )
   prestadorInstituciones: PrestadorInstitucion[];
+
+  
 }

@@ -2,13 +2,14 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PrestadorService } from './prestador.service';
 import { CreatePrestadorDto } from './dto/create-prestador.dto';
 import { UpdatePrestadorDto } from './dto/update-prestador.dto';
+import { VistaDetallePrestadores } from './entities/VistaDetallePrestadores.entity';
 
 @Controller('prestador')
 export class PrestadorController {
   constructor(private readonly prestadorService: PrestadorService) {}
 
   @Get('detail')
-  async getDetailPrestadores():Promise<any> {
+  async getDetailPrestadores():Promise<VistaDetallePrestadores[]> {
     const detailPrestadores = await this.prestadorService.findDetailPrestadores();
     return detailPrestadores;
   }

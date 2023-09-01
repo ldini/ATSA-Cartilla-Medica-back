@@ -1,3 +1,4 @@
+import { Institucion } from "src/institucion/entities/institucion.entity";
 import { Prestador } from "src/prestador/entities/prestador.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -17,4 +18,7 @@ export class Horario {
 
   @ManyToOne(() => Prestador, (prestador) => prestador.horarios)
   prestador: Prestador;
+
+  @ManyToOne(() => Institucion, (institucion) => institucion.horarios)
+  institucion: Institucion;
 }

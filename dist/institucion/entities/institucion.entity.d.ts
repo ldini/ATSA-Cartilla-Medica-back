@@ -1,3 +1,4 @@
+import { Horario } from "src/horario/entities/horario.entity";
 import { PrestadorInstitucion } from "src/prestador/entities/prestador-institucion.entity";
 import { Telefono } from "src/telefono/entities/telefono.entity";
 export declare class Institucion {
@@ -6,5 +7,6 @@ export declare class Institucion {
     zona: string;
     direccion: string;
     telefonos: Telefono[];
+    horarios: Horario[];
     prestadorInstituciones: PrestadorInstitucion[];
 }

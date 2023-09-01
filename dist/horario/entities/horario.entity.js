@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Horario = void 0;
+const institucion_entity_1 = require("../../institucion/entities/institucion.entity");
 const prestador_entity_1 = require("../../prestador/entities/prestador.entity");
 const typeorm_1 = require("typeorm");
 let Horario = class Horario {
@@ -34,6 +35,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => prestador_entity_1.Prestador, (prestador) => prestador.horarios),
     __metadata("design:type", prestador_entity_1.Prestador)
 ], Horario.prototype, "prestador", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => institucion_entity_1.Institucion, (institucion) => institucion.horarios),
+    __metadata("design:type", institucion_entity_1.Institucion)
+], Horario.prototype, "institucion", void 0);
 Horario = __decorate([
     (0, typeorm_1.Entity)()
 ], Horario);

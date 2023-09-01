@@ -1,3 +1,4 @@
+import { Institucion } from "src/institucion/entities/institucion.entity";
 import { Prestador } from "src/prestador/entities/prestador.entity";
 export declare class Horario {
     id: number;
@@ -5,4 +6,5 @@ export declare class Horario {
     hora_inicio: string;
     hora_fin: string;
     prestador: Prestador;
+    institucion: Institucion;
 }

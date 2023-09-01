@@ -17,33 +17,15 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const prestador_entity_1 = require("./entities/prestador.entity");
+const VistaDetallePrestadores_entity_1 = require("./entities/VistaDetallePrestadores.entity");
 let PrestadorService = class PrestadorService {
-    constructor(prestadorRepository) {
+    constructor(prestadorRepository, vistaDetallePrestadoresRepository) {
         this.prestadorRepository = prestadorRepository;
+        this.vistaDetallePrestadoresRepository = vistaDetallePrestadoresRepository;
     }
     async findDetailPrestadores() {
-        const queryBuilder = this.prestadorRepository.createQueryBuilder('prestador');
-        const result = await queryBuilder
-            .select([
-            'prestador.apellido',
-            'prestador.nombre',
-            'especialidad.nombre',
-            'institucion.nombre',
-            'institucion.zona',
-            'institucion.direccion',
-            'telefono.numero',
-            'telefono.interno',
-            'telefono.whatapp',
-            'horario.dia',
-            'horario.hora_inicio',
-            'horario.hora_fin'
-        ])
-            .leftJoin('prestador.especialidad', 'especialidad')
-            .leftJoin('prestador.horarios', 'horario')
-            .leftJoin('prestador.prestadorInstituciones', 'prestador_institucion')
-            .innerJoin('prestador_institucion.institucion', 'institucion')
-            .leftJoin('institucion.telefonos', 'telefono')
-            .getRawMany();
+        const result = await this.vistaDetallePrestadoresRepository.find();
+        console.log(result);
         return result;
     }
     create(createPrestadorDto) {
@@ -65,7 +47,9 @@ let PrestadorService = class PrestadorService {
 PrestadorService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(prestador_entity_1.Prestador)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(VistaDetallePrestadores_entity_1.VistaDetallePrestadores)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], PrestadorService);
 exports.PrestadorService = PrestadorService;
 //# sourceMappingURL=prestador.service.js.map

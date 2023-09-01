@@ -15,11 +15,12 @@ const horario_entity_1 = require("../horario/entities/horario.entity");
 const especialidad_entity_1 = require("../especialidad/entities/especialidad.entity");
 const prestador_entity_1 = require("./entities/prestador.entity");
 const prestador_institucion_entity_1 = require("./entities/prestador-institucion.entity");
+const VistaDetallePrestadores_entity_1 = require("./entities/VistaDetallePrestadores.entity");
 let PrestadorModule = class PrestadorModule {
 };
 PrestadorModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([prestador_entity_1.Prestador, horario_entity_1.Horario, especialidad_entity_1.Especialidad, prestador_institucion_entity_1.PrestadorInstitucion])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([prestador_entity_1.Prestador, horario_entity_1.Horario, especialidad_entity_1.Especialidad, prestador_institucion_entity_1.PrestadorInstitucion, VistaDetallePrestadores_entity_1.VistaDetallePrestadores])],
         controllers: [prestador_controller_1.PrestadorController],
         providers: [prestador_service_1.PrestadorService]
     })

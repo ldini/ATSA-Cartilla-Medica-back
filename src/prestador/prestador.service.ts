@@ -4,40 +4,21 @@ import { UpdatePrestadorDto } from './dto/update-prestador.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Prestador } from './entities/prestador.entity';
+import { VistaDetallePrestadores } from './entities/VistaDetallePrestadores.entity';
 
 @Injectable()
 export class PrestadorService {
 
   constructor(
     @InjectRepository(Prestador)
-    private prestadorRepository: Repository<Prestador>){}
+    private prestadorRepository: Repository<Prestador>, 
+    @InjectRepository(VistaDetallePrestadores)
+    private vistaDetallePrestadoresRepository: Repository<VistaDetallePrestadores>){}
 
 
-    async findDetailPrestadores():Promise<any> {
-      const queryBuilder = this.prestadorRepository.createQueryBuilder('prestador');
-  
-      const result = await queryBuilder
-        .select([
-          'prestador.apellido',
-          'prestador.nombre',
-          'especialidad.nombre',
-          'institucion.nombre',
-          'institucion.zona',
-          'institucion.direccion',
-          'telefono.numero',
-          'telefono.interno',
-          'telefono.whatapp',
-          'horario.dia',
-          'horario.hora_inicio',
-          'horario.hora_fin'
-        ])
-        .leftJoin('prestador.especialidad', 'especialidad')
-        .leftJoin('prestador.horarios', 'horario')
-        .leftJoin('prestador.prestadorInstituciones', 'prestador_institucion')
-        .innerJoin('prestador_institucion.institucion', 'institucion')
-        .leftJoin('institucion.telefonos', 'telefono')
-        .getRawMany();
-  
+    async findDetailPrestadores(): Promise<VistaDetallePrestadores[]> {
+      const result = await this.vistaDetallePrestadoresRepository.find();
+      console.log(result);
       return result;
     }
 
