@@ -9,21 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EspecialidadService = void 0;
 const common_1 = require("@nestjs/common");
 let EspecialidadService = class EspecialidadService {
-    create(createEspecialidadDto) {
-        return 'This action adds a new especialidad';
-    }
-    findAll() {
-        return `This action returns all especialidad`;
-    }
-    findOne(id) {
-        return `This action returns a #${id} especialidad`;
-    }
-    update(id, updateEspecialidadDto) {
-        return `This action updates a #${id} especialidad`;
-    }
-    remove(id) {
-        return `This action removes a #${id} especialidad`;
-    }
 };
 EspecialidadService = __decorate([
     (0, common_1.Injectable)()

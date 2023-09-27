@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Especialidad = void 0;
+const institucion_entity_1 = require("../../institucion/entities/institucion.entity");
 const typeorm_1 = require("typeorm");
 let Especialidad = class Especialidad {
 };
@@ -21,6 +22,11 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
 ], Especialidad.prototype, "nombre", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => institucion_entity_1.Institucion, institucion => institucion.especialidades),
+    (0, typeorm_1.JoinTable)({ name: 'guardias' }),
+    __metadata("design:type", Array)
+], Especialidad.prototype, "instituciones", void 0);
 Especialidad = __decorate([
     (0, typeorm_1.Entity)()
 ], Especialidad);

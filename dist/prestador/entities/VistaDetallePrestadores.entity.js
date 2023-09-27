@@ -15,46 +15,6 @@ let VistaDetallePrestadores = class VistaDetallePrestadores {
 };
 __decorate([
     (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", Number)
-], VistaDetallePrestadores.prototype, "prestador_id", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "institucion_nombre", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "institucion_zona", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "institucion_direccion", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "telefonos", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "dias_trabajo", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "hora_inicio", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "hora_fin", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", Number)
-], VistaDetallePrestadores.prototype, "prestadorId", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", Number)
-], VistaDetallePrestadores.prototype, "institucionId", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
     __metadata("design:type", String)
 ], VistaDetallePrestadores.prototype, "prestador_nombre", void 0);
 __decorate([
@@ -64,116 +24,110 @@ __decorate([
 __decorate([
     (0, typeorm_1.ViewColumn)(),
     __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "prestador_direccion", void 0);
-__decorate([
-    (0, typeorm_1.ViewColumn)(),
-    __metadata("design:type", Number)
-], VistaDetallePrestadores.prototype, "id_especialidad", void 0);
+], VistaDetallePrestadores.prototype, "especialidad_nombre", void 0);
 __decorate([
     (0, typeorm_1.ViewColumn)(),
     __metadata("design:type", String)
-], VistaDetallePrestadores.prototype, "especialidad_nombre", void 0);
+], VistaDetallePrestadores.prototype, "institucion_nombre", void 0);
+__decorate([
+    (0, typeorm_1.ViewColumn)(),
+    __metadata("design:type", String)
+], VistaDetallePrestadores.prototype, "institucion_direccion", void 0);
+__decorate([
+    (0, typeorm_1.ViewColumn)(),
+    __metadata("design:type", String)
+], VistaDetallePrestadores.prototype, "institucion_zona", void 0);
+__decorate([
+    (0, typeorm_1.ViewColumn)(),
+    __metadata("design:type", String)
+], VistaDetallePrestadores.prototype, "telefonos", void 0);
+__decorate([
+    (0, typeorm_1.ViewColumn)(),
+    __metadata("design:type", String)
+], VistaDetallePrestadores.prototype, "horarios_trabajo", void 0);
 VistaDetallePrestadores = __decorate([
     (0, typeorm_1.ViewEntity)({
         name: 'VistaDetallePrestadores',
-        expression: `SELECT
-                            [telefonos].[prestador_id],
-                            [telefonos].[nombre] AS institucion_nombre,
-                            [telefonos].[zona] AS institucion_zona,
-                            [telefonos].[direccion] AS institucion_direccion,
-                            [telefonos].[numeros] AS telefonos,
-                            [horarios].[dias_trabajo],
-                            [horarios].[hora_inicio],
-                            [horarios].[hora_fin],
-                            [horarios].[prestadorId],
-                            [horarios].[institucionId],
-                            [prestadores].[prestador_nombre],
-                            [prestadores].[prestador_apellido],
-                            [prestadores].[prestador_direccion],
-                            [prestadores].[id_especialidad],
-                            [prestadores].[especialidad_nombre]
-                            FROM
-                            (
-                            SELECT
-                                [prestador].[id] AS prestador_id,
-                                [institucion].[nombre],
-                                [institucion].[zona],
-                                [institucion].[direccion],
-                                STRING_AGG(
-                                    CASE
-                                        WHEN [whatapp] = 1 THEN CONCAT([numero], ' (wa)')
-                                        WHEN [interno] IS NOT NULL THEN CONCAT([numero], '(',[interno],')' )
-                                        ELSE [numero]
-                                    END,
-                                    ' / '
-                                ) AS numeros
-                            FROM [cartilla].[dbo].[telefono]
-                            JOIN [cartilla].[dbo].[prestador_institucion] ON [prestador_institucion].[institucion_id] = [telefono].[institucionId]
-                            JOIN [cartilla].[dbo].[prestador] ON [prestador].[id] = [prestador_institucion].[prestador_id]
-                            JOIN [cartilla].[dbo].[institucion] ON [institucion].[id] = [prestador_institucion].[institucion_id]
-                            GROUP BY [prestador].[id], [institucion].[nombre], [institucion].[zona], [institucion].[direccion]
-                            ) AS telefonos
-                            JOIN
-                            (
-                            SELECT
+        expression: `  SELECT
+                    prestador.nombre as prestador_nombre,
+                    prestador.apellido as prestador_apellido,
+                    especialidad.nombre as especialidad_nombre,
+                    institucion.nombre as institucion_nombre,
+                    institucion.direccion as institucion_direccion,
+                    institucion.zona as institucion_zona,
+                    institucion_telefono.numeros as telefonos,
+                    STRING_AGG(horario_prestador.dia + ' ' + horario_prestador.hora_inicio + ' a ' + horario_prestador.hora_fin, ' / ') as horarios_trabajo
+                    FROM [cartilla].[dbo].[prestador_institucion]
+                    LEFT JOIN [cartilla].[dbo].[prestador] ON [prestador].[id] = [prestador_institucion].[prestador_id]
+                    LEFT JOIN [cartilla].[dbo].[especialidad] ON [especialidad].[id] = [prestador].[id_especialidad]
+                    LEFT JOIN [cartilla].[dbo].[horario] AS [horario_prestador] ON [horario_prestador].[prestadorId] = [prestador].[id]
+                    LEFT JOIN [cartilla].[dbo].[institucion] ON [institucion].[id] = [prestador_institucion].[institucion_id]
+                    LEFT JOIN (SELECT
+                            [institucionId],
+                            STRING_AGG(
                                 CASE
-                                    WHEN COUNT(*) > 1 THEN STRING_AGG([dia], ', ')
-                                    ELSE MAX([dia])
-                                END AS dias_trabajo,
-                                [hora_inicio],
-                                [hora_fin],
-                                [prestadorId],
-                                [institucionId]
-                            FROM
-                            (
-                                SELECT
-                                    [dia],
-                                    [hora_inicio],
-                                    [hora_fin],
-                                    [prestadorId],
-                                    [institucionId],
-                                    COUNT(*) OVER (PARTITION BY [hora_inicio], [hora_fin], [prestadorId], [institucionId]) AS cnt
-                                FROM [cartilla].[dbo].[horario]
-                            ) AS HorarioConConteo
-                            GROUP BY
-                                [hora_inicio],
-                                [hora_fin],
-                                [prestadorId],
-                                [institucionId],
-                                cnt
-                            ) AS horarios
-                            ON [telefonos].[prestador_id] = [horarios].[prestadorId]
-                            JOIN
-                            (
-                            SELECT
-                                p.[id] AS prestador_id,
-                                p.[nombre] AS prestador_nombre,
-                                p.[apellido] AS prestador_apellido,
-                                p.[direccion] AS prestador_direccion,
-                                p.[id_especialidad],
-                                e.[nombre] AS especialidad_nombre
-                            FROM
-                            (
-                                SELECT TOP (1000)
-                                    [id],
-                                    [nombre],
-                                    [apellido],
-                                    [direccion],
-                                    [id_especialidad]
-                                FROM [cartilla].[dbo].[prestador]
-                            ) AS p
-                            JOIN
-                            (
-                                SELECT TOP (1000)
-                                    [id],
-                                    [nombre]
-                                FROM [cartilla].[dbo].[especialidad]
-                            ) AS e
-                            ON p.[id_especialidad] = e.[id]
-                            ) AS prestadores
-                            ON [telefonos].[prestador_id] = [prestadores].[prestador_id]
+                                    WHEN [whatapp] = 1 THEN
+                                        [numero] + ' (wa)'
+                                    ELSE
+                                        [numero]
+                                END
+                                + CASE
+                                    WHEN [interno] IS NOT NULL THEN
+                                        ' (' + [interno] + ')'
+                                    ELSE
+                                        ''
+                                END,
+                                ' / '
+                            ) AS numeros
+                            FROM [cartilla].[dbo].[telefono]
+                            GROUP BY [institucionId])
+                    AS [institucion_telefono] ON [institucion].[id] = [institucion_telefono].[institucionId]
+                    GROUP BY
+                    prestador.id,
+                    institucion.id,
+                    prestador.nombre,
+                    prestador.apellido,
+                    especialidad.nombre,
+                    institucion.nombre,
+                    institucion.direccion,
+                    institucion.zona,
+                    institucion_telefono.numeros
 
-                            `
+                    UNION
+
+                    SELECT   
+                        'guardia' as prestador_nombre
+                        ,null as prestador_apellido
+                        ,especialidad.nombre as especialidad_nombre
+                        ,institucion.nombre as institucion_nombre
+                        ,institucion.direccion as institucion_direccion
+                        ,institucion.zona as institucion_zona
+                        ,institucion_telefono.numeros as telefonos
+                        ,null horarios_trabajo
+
+                    FROM [cartilla].[dbo].[guardias]
+                    LEFT JOIN [cartilla].[dbo].[institucion] ON [institucion].[id] = [guardias].[institucionId]
+                    LEFT JOIN [cartilla].[dbo].[especialidad] ON [especialidad].[id] = [guardias].[especialidadId]
+                    LEFT JOIN (SELECT
+                            [institucionId],
+                            STRING_AGG(
+                                CASE
+                                    WHEN [whatapp] = 1 THEN
+                                        [numero] + ' (wa)'
+                                    ELSE
+                                        [numero]
+                                END
+                                + CASE
+                                    WHEN [interno] IS NOT NULL THEN
+                                        ' (' + [interno] + ')'
+                                    ELSE
+                                        ''
+                                END,
+                                ' / '
+                            ) AS numeros
+                            FROM [cartilla].[dbo].[telefono]
+                            GROUP BY [institucionId])
+                    AS [institucion_telefono] ON [institucion].[id] = [institucion_telefono].[institucionId] `
     })
 ], VistaDetallePrestadores);
 exports.VistaDetallePrestadores = VistaDetallePrestadores;

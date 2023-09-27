@@ -13,14 +13,14 @@ export class PrestadorService {
     @InjectRepository(Prestador)
     private prestadorRepository: Repository<Prestador>, 
     @InjectRepository(VistaDetallePrestadores)
-    private vistaDetallePrestadoresRepository: Repository<VistaDetallePrestadores>){}
+    private vistaDetallePrestadoresRepository: Repository<VistaDetallePrestadores>)
+  {}
 
 
-    async findDetailPrestadores(): Promise<VistaDetallePrestadores[]> {
-      const result = await this.vistaDetallePrestadoresRepository.find();
-      console.log(result);
-      return result;
-    }
+  async findDetailPrestadores(): Promise<VistaDetallePrestadores[]> {
+    const result = await this.vistaDetallePrestadoresRepository.find();
+    return result;
+  }
 
   create(createPrestadorDto: CreatePrestadorDto) {
     return 'This action adds a new prestador';

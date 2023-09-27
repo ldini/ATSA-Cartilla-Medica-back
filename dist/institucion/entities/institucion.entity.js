@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Institucion = void 0;
+const especialidad_entity_1 = require("../../especialidad/entities/especialidad.entity");
 const horario_entity_1 = require("../../horario/entities/horario.entity");
 const prestador_institucion_entity_1 = require("../../prestador/entities/prestador-institucion.entity");
 const telefono_entity_1 = require("../../telefono/entities/telefono.entity");
@@ -40,6 +41,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => horario_entity_1.Horario, (horario) => horario.institucion),
     __metadata("design:type", Array)
 ], Institucion.prototype, "horarios", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => especialidad_entity_1.Especialidad, especialidad => especialidad.instituciones),
+    __metadata("design:type", Array)
+], Institucion.prototype, "especialidades", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => prestador_institucion_entity_1.PrestadorInstitucion, (prestadorInstitucion) => prestadorInstitucion.institucion),
     __metadata("design:type", Array)

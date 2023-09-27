@@ -25,7 +25,6 @@ let PrestadorService = class PrestadorService {
     }
     async findDetailPrestadores() {
         const result = await this.vistaDetallePrestadoresRepository.find();
-        console.log(result);
         return result;
     }
     create(createPrestadorDto) {

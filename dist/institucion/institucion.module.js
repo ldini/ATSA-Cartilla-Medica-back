@@ -13,11 +13,12 @@ const institucion_controller_1 = require("./institucion.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const prestador_institucion_entity_1 = require("../prestador/entities/prestador-institucion.entity");
 const telefono_entity_1 = require("../telefono/entities/telefono.entity");
+const especialidad_entity_1 = require("../especialidad/entities/especialidad.entity");
 let InstitucionModule = class InstitucionModule {
 };
 InstitucionModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([prestador_institucion_entity_1.PrestadorInstitucion, telefono_entity_1.Telefono])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([prestador_institucion_entity_1.PrestadorInstitucion, telefono_entity_1.Telefono, especialidad_entity_1.Especialidad])],
         controllers: [institucion_controller_1.InstitucionController],
         providers: [institucion_service_1.InstitucionService]
     })
