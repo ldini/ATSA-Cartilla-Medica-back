@@ -7,9 +7,10 @@ import { Especialidad } from 'src/especialidad/entities/especialidad.entity';
 import { Prestador } from './entities/prestador.entity';
 import { PrestadorInstitucion } from './entities/prestador-institucion.entity';
 import { VistaDetallePrestadores } from './entities/VistaDetallePrestadores.entity';
+import { Telefono } from 'src/telefono/entities/telefono.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Prestador,Horario,Especialidad,PrestadorInstitucion,VistaDetallePrestadores])],
+  imports: [TypeOrmModule.forFeature([Telefono,Prestador,Horario,Especialidad,PrestadorInstitucion,VistaDetallePrestadores])],
   controllers: [PrestadorController],
   providers: [PrestadorService]
 })

@@ -18,4 +18,7 @@ export class Telefono {
 
   @ManyToOne(() => Institucion, (institucion) => institucion.telefonos)
   institucion: Institucion;
+
+  @ManyToOne(() => Prestador, (prestador) => prestador.telefonos)
+  prestador: Prestador;
 }

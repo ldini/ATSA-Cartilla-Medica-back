@@ -14,6 +14,7 @@ const especialidad_entity_1 = require("../../especialidad/entities/especialidad.
 const horario_entity_1 = require("../../horario/entities/horario.entity");
 const typeorm_1 = require("typeorm");
 const prestador_institucion_entity_1 = require("./prestador-institucion.entity");
+const telefono_entity_1 = require("../../telefono/entities/telefono.entity");
 let Prestador = class Prestador {
 };
 __decorate([
@@ -33,6 +34,10 @@ __decorate([
     __metadata("design:type", String)
 ], Prestador.prototype, "direccion", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Prestador.prototype, "zona", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => especialidad_entity_1.Especialidad),
     (0, typeorm_1.JoinColumn)({ name: 'id_especialidad' }),
     __metadata("design:type", especialidad_entity_1.Especialidad)
@@ -45,6 +50,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => horario_entity_1.Horario, (horario) => horario.prestador),
     __metadata("design:type", Array)
 ], Prestador.prototype, "horarios", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => telefono_entity_1.Telefono, (telefono) => telefono.prestador),
+    __metadata("design:type", Array)
+], Prestador.prototype, "telefonos", void 0);
 Prestador = __decorate([
     (0, typeorm_1.Entity)()
 ], Prestador);

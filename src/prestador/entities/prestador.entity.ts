@@ -2,6 +2,7 @@ import { Especialidad } from "src/especialidad/entities/especialidad.entity";
 import { Horario } from "src/horario/entities/horario.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PrestadorInstitucion } from "./prestador-institucion.entity";
+import { Telefono } from "src/telefono/entities/telefono.entity";
 
 @Entity()
 export class Prestador {
@@ -17,6 +18,9 @@ export class Prestador {
     @Column({ nullable: true })
     direccion: string;
 
+    @Column({ nullable: true })
+    zona: string;
+
     @ManyToOne(() => Especialidad)
     @JoinColumn({name:'id_especialidad'})
     especialidad: Especialidad;
@@ -29,4 +33,7 @@ export class Prestador {
 
     @OneToMany(() => Horario, (horario) => horario.prestador)
     horarios:Horario[];
+
+    @OneToMany(() => Telefono, (telefono) => telefono.prestador)
+    telefonos:Telefono[];
 }

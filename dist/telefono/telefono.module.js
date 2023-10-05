@@ -12,11 +12,13 @@ const telefono_service_1 = require("./telefono.service");
 const telefono_controller_1 = require("./telefono.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const prestador_entity_1 = require("../prestador/entities/prestador.entity");
+const telefono_entity_1 = require("./entities/telefono.entity");
+const institucion_entity_1 = require("../institucion/entities/institucion.entity");
 let TelefonoModule = class TelefonoModule {
 };
 TelefonoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([prestador_entity_1.Prestador])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([telefono_entity_1.Telefono, prestador_entity_1.Prestador, institucion_entity_1.Institucion])],
         controllers: [telefono_controller_1.TelefonoController],
         providers: [telefono_service_1.TelefonoService]
     })
