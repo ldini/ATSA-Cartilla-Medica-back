@@ -34,6 +34,10 @@ __decorate([
     __metadata("design:type", String)
 ], Institucion.prototype, "direccion", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: 'clinica' }),
+    __metadata("design:type", String)
+], Institucion.prototype, "tipo", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => telefono_entity_1.Telefono, (telefono) => telefono.institucion),
     __metadata("design:type", Array)
 ], Institucion.prototype, "telefonos", void 0);

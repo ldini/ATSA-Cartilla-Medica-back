@@ -19,6 +19,9 @@ export class Institucion {
   @Column({ nullable: true })
   direccion: string;
 
+  @Column({default: 'clinica'})
+  tipo:string
+
   @OneToMany(() => Telefono, (telefono) => telefono.institucion)
   telefonos:Telefono[]
 

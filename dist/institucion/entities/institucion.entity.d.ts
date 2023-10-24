@@ -7,6 +7,7 @@ export declare class Institucion {
     nombre: string;
     zona: string;
     direccion: string;
+    tipo: string;
     telefonos: Telefono[];
     horarios: Horario[];
     especialidades: Especialidad[];

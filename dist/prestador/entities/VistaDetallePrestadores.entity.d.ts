@@ -5,6 +5,7 @@ export declare class VistaDetallePrestadores {
     institucion_nombre: string;
     institucion_direccion: string;
     institucion_zona: string;
+    institucion_tipo: string;
     telefonos: string;
     horarios_trabajo: string;
 }
