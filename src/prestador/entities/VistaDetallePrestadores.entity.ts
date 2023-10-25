@@ -92,10 +92,10 @@ import { Entity, ViewEntity, ViewColumn } from 'typeorm';
       prestador.nombre as prestador_nombre,
       prestador.apellido as prestador_apellido,
       especialidad.nombre as especialidad_nombre,
-      prestador.apellido as institucion_nombre,
+      prestador.apellido + ' (Med.C)' as institucion_nombre,
       prestador.direccion as institucion_direccion,
       prestador.zona as institucion_zona,
-      'cabecera' as institucion_tipo,
+      'MEDICO DE CABECERA' as institucion_tipo,
       prestador_telefono.numeros as telefonos,
       STRING_AGG(horario_prestador.dia + ' ' + horario_prestador.hora_inicio + ' a ' + horario_prestador.hora_fin, ' / ') as horarios_trabajo
   FROM [cartilla].[dbo].[prestador]
