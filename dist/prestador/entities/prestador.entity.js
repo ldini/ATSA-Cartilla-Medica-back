@@ -16,6 +16,12 @@ const typeorm_1 = require("typeorm");
 const prestador_institucion_entity_1 = require("./prestador-institucion.entity");
 const telefono_entity_1 = require("../../telefono/entities/telefono.entity");
 let Prestador = class Prestador {
+    constructor(nombre, apellido, direccion, zona) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.zona = zona;
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -55,7 +61,8 @@ __decorate([
     __metadata("design:type", Array)
 ], Prestador.prototype, "telefonos", void 0);
 Prestador = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    __metadata("design:paramtypes", [String, String, String, String])
 ], Prestador);
 exports.Prestador = Prestador;
 //# sourceMappingURL=prestador.entity.js.map

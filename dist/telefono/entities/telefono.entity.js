@@ -14,6 +14,11 @@ const institucion_entity_1 = require("../../institucion/entities/institucion.ent
 const prestador_entity_1 = require("../../prestador/entities/prestador.entity");
 const typeorm_1 = require("typeorm");
 let Telefono = class Telefono {
+    constructor(numero, whatapp, interno) {
+        this.numero = numero;
+        this.whatapp = whatapp;
+        this.interno = interno;
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -32,15 +37,16 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Telefono.prototype, "whatapp", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => institucion_entity_1.Institucion, (institucion) => institucion.telefonos),
+    (0, typeorm_1.ManyToOne)(() => institucion_entity_1.Institucion, (institucion) => institucion.telefonos, { onDelete: 'CASCADE' }),
     __metadata("design:type", institucion_entity_1.Institucion)
 ], Telefono.prototype, "institucion", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => prestador_entity_1.Prestador, (prestador) => prestador.telefonos),
+    (0, typeorm_1.ManyToOne)(() => prestador_entity_1.Prestador, (prestador) => prestador.telefonos, { onDelete: 'CASCADE' }),
     __metadata("design:type", prestador_entity_1.Prestador)
 ], Telefono.prototype, "prestador", void 0);
 Telefono = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    __metadata("design:paramtypes", [String, Boolean, String])
 ], Telefono);
 exports.Telefono = Telefono;
 //# sourceMappingURL=telefono.entity.js.map

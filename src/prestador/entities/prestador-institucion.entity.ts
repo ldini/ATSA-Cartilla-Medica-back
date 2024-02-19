@@ -18,4 +18,5 @@ export class PrestadorInstitucion {
   })
   @JoinColumn({ name: 'institucion_id' })
   institucion: Institucion;
+
 }

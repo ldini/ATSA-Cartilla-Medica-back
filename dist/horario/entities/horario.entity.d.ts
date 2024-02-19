@@ -7,4 +7,5 @@ export declare class Horario {
     hora_fin: string;
     prestador: Prestador;
     institucion: Institucion;
+    constructor(dia: string, hora_inicio: string, hora_fin: string);
 }

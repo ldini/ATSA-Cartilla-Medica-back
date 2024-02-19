@@ -16,6 +16,12 @@ const prestador_institucion_entity_1 = require("../../prestador/entities/prestad
 const telefono_entity_1 = require("../../telefono/entities/telefono.entity");
 const typeorm_1 = require("typeorm");
 let Institucion = class Institucion {
+    constructor(nombre, zona, direccion, tipo) {
+        this.nombre = nombre;
+        this.zona = zona;
+        this.direccion = direccion;
+        this.tipo = tipo;
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -46,15 +52,20 @@ __decorate([
     __metadata("design:type", Array)
 ], Institucion.prototype, "horarios", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => especialidad_entity_1.Especialidad, especialidad => especialidad.instituciones),
+    (0, typeorm_1.ManyToMany)(() => especialidad_entity_1.Especialidad, especialidad => especialidad.instituciones_guardia),
     __metadata("design:type", Array)
-], Institucion.prototype, "especialidades", void 0);
+], Institucion.prototype, "especialidades_guardia", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => especialidad_entity_1.Especialidad, especialidad => especialidad.instituciones_externo),
+    __metadata("design:type", Array)
+], Institucion.prototype, "especialidades_externo", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => prestador_institucion_entity_1.PrestadorInstitucion, (prestadorInstitucion) => prestadorInstitucion.institucion),
     __metadata("design:type", Array)
 ], Institucion.prototype, "prestadorInstituciones", void 0);
 Institucion = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    __metadata("design:paramtypes", [String, String, String, String])
 ], Institucion);
 exports.Institucion = Institucion;
 //# sourceMappingURL=institucion.entity.js.map

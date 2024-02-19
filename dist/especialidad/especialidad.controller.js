@@ -8,15 +8,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EspecialidadController = void 0;
 const common_1 = require("@nestjs/common");
 const especialidad_service_1 = require("./especialidad.service");
+const create_especialidad_dto_1 = require("./dto/create-especialidad.dto");
 let EspecialidadController = class EspecialidadController {
     constructor(especialidadService) {
         this.especialidadService = especialidadService;
     }
+    listar() {
+        return this.especialidadService.listar();
+    }
+    create(createEspecialidadDto) {
+        return this.especialidadService.create(createEspecialidadDto);
+    }
 };
+__decorate([
+    (0, common_1.Get)('listar'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], EspecialidadController.prototype, "listar", null);
+__decorate([
+    (0, common_1.Post)('create'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_especialidad_dto_1.CreateEspecialidadDto]),
+    __metadata("design:returntype", Promise)
+], EspecialidadController.prototype, "create", null);
 EspecialidadController = __decorate([
     (0, common_1.Controller)('especialidad'),
     __metadata("design:paramtypes", [especialidad_service_1.EspecialidadService])

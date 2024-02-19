@@ -1,6 +1,6 @@
 import { Institucion } from "src/institucion/entities/institucion.entity";
 import { Prestador } from "src/prestador/entities/prestador.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
 export class Telefono {
@@ -16,9 +16,15 @@ export class Telefono {
   @Column({ nullable: true })
   whatapp: boolean;
 
-  @ManyToOne(() => Institucion, (institucion) => institucion.telefonos)
+  constructor(numero:string,whatapp:boolean,interno:string){
+    this.numero = numero;
+    this.whatapp = whatapp;
+    this.interno = interno;
+  }
+
+  @ManyToOne(() => Institucion, (institucion) => institucion.telefonos,{ onDelete: 'CASCADE' })
   institucion: Institucion;
 
-  @ManyToOne(() => Prestador, (prestador) => prestador.telefonos)
+  @ManyToOne(() => Prestador, (prestador) => prestador.telefonos,{ onDelete: 'CASCADE' })
   prestador: Prestador;
 }

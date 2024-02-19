@@ -14,6 +14,11 @@ const institucion_entity_1 = require("../../institucion/entities/institucion.ent
 const prestador_entity_1 = require("../../prestador/entities/prestador.entity");
 const typeorm_1 = require("typeorm");
 let Horario = class Horario {
+    constructor(dia, hora_inicio, hora_fin) {
+        this.dia = dia;
+        this.hora_inicio = hora_inicio;
+        this.hora_fin = hora_fin;
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -32,15 +37,16 @@ __decorate([
     __metadata("design:type", String)
 ], Horario.prototype, "hora_fin", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => prestador_entity_1.Prestador, (prestador) => prestador.horarios),
+    (0, typeorm_1.ManyToOne)(() => prestador_entity_1.Prestador, (prestador) => prestador.horarios, { onDelete: 'CASCADE' }),
     __metadata("design:type", prestador_entity_1.Prestador)
 ], Horario.prototype, "prestador", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => institucion_entity_1.Institucion, (institucion) => institucion.horarios),
+    (0, typeorm_1.ManyToOne)(() => institucion_entity_1.Institucion, (institucion) => institucion.horarios, { onDelete: 'CASCADE' }),
     __metadata("design:type", institucion_entity_1.Institucion)
 ], Horario.prototype, "institucion", void 0);
 Horario = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    __metadata("design:paramtypes", [String, String, String])
 ], Horario);
 exports.Horario = Horario;
 //# sourceMappingURL=horario.entity.js.map

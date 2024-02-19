@@ -22,14 +22,24 @@ export class Institucion {
   @Column({default: 'clinica'})
   tipo:string
 
+  constructor(nombre: string, zona: string, direccion: string, tipo: string) {
+    this.nombre = nombre;
+    this.zona = zona;
+    this.direccion = direccion;
+    this.tipo = tipo;
+  }
+
   @OneToMany(() => Telefono, (telefono) => telefono.institucion)
   telefonos:Telefono[]
 
   @OneToMany(() => Horario, (horario) => horario.institucion)
   horarios:Horario[];
 
-  @ManyToMany(()=> Especialidad,especialidad=>especialidad.instituciones)
-  especialidades:Especialidad[];
+  @ManyToMany(()=> Especialidad,especialidad=>especialidad.instituciones_guardia)
+  especialidades_guardia:Especialidad[];
+
+  @ManyToMany(()=> Especialidad,especialidad=>especialidad.instituciones_externo)
+  especialidades_externo:Especialidad[];
 
   @OneToMany(
     () => PrestadorInstitucion,

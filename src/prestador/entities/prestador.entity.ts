@@ -6,6 +6,14 @@ import { Telefono } from "src/telefono/entities/telefono.entity";
 
 @Entity()
 export class Prestador {
+  
+    constructor(nombre:string,apellido:string,direccion:string,zona:string){
+      this.nombre = nombre;
+      this.apellido = apellido;
+      this.direccion = direccion;
+      this.zona = zona;
+    }
+
     @PrimaryGeneratedColumn()
     id: number;
 

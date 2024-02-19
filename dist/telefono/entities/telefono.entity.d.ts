@@ -5,6 +5,7 @@ export declare class Telefono {
     numero: string;
     interno: string;
     whatapp: boolean;
+    constructor(numero: string, whatapp: boolean, interno: string);
     institucion: Institucion;
     prestador: Prestador;
 }

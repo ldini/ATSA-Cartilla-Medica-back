@@ -8,8 +8,10 @@ export declare class Institucion {
     zona: string;
     direccion: string;
     tipo: string;
+    constructor(nombre: string, zona: string, direccion: string, tipo: string);
     telefonos: Telefono[];
     horarios: Horario[];
-    especialidades: Especialidad[];
+    especialidades_guardia: Especialidad[];
+    especialidades_externo: Especialidad[];
     prestadorInstituciones: PrestadorInstitucion[];
 }

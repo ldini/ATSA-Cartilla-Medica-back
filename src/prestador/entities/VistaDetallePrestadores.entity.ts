@@ -87,6 +87,43 @@ import { Entity, ViewEntity, ViewColumn } from 'typeorm';
   AS [institucion_telefono] ON [institucion].[id] = [institucion_telefono].[institucionId] 
 
   UNION
+
+    SELECT   
+      'Externo' as prestador_nombre
+      ,'' as prestador_apellido
+      ,especialidad.nombre as especialidad_nombre
+      ,institucion.nombre as institucion_nombre
+      ,institucion.direccion as institucion_direccion
+      ,institucion.zona as institucion_zona
+      ,institucion.tipo as institucion_tipo
+      ,institucion_telefono.numeros as telefonos
+      ,null horarios_trabajo
+
+  FROM [cartilla].[dbo].[externos]
+  LEFT JOIN [cartilla].[dbo].[institucion] ON [institucion].[id] = [externos].[institucionId]
+  LEFT JOIN [cartilla].[dbo].[especialidad] ON [especialidad].[id] = [externos].[especialidadId]
+  LEFT JOIN (SELECT
+          [institucionId],
+          STRING_AGG(
+              CASE
+                  WHEN [whatapp] = 1 THEN
+                      [numero] + ' (wa)'
+                  ELSE
+                      [numero]
+              END
+              + CASE
+                  WHEN [interno] IS NOT NULL THEN
+                      ' (' + [interno] + ')'
+                  ELSE
+                      ''
+              END,
+              ' / '
+          ) AS numeros
+          FROM [cartilla].[dbo].[telefono]
+          GROUP BY [institucionId])
+  AS [institucion_telefono] ON [institucion].[id] = [institucion_telefono].[institucionId] 
+
+  UNION
   
   SELECT   
       prestador.nombre as prestador_nombre,
@@ -95,7 +132,7 @@ import { Entity, ViewEntity, ViewColumn } from 'typeorm';
       prestador.apellido + ' (Med.C)' as institucion_nombre,
       prestador.direccion as institucion_direccion,
       prestador.zona as institucion_zona,
-      'MEDICO DE CABECERA' as institucion_tipo,
+      'Medico de cabecera' as institucion_tipo,
       prestador_telefono.numeros as telefonos,
       STRING_AGG(horario_prestador.dia + ' ' + horario_prestador.hora_inicio + ' a ' + horario_prestador.hora_fin, ' / ') as horarios_trabajo
   FROM [cartilla].[dbo].[prestador]

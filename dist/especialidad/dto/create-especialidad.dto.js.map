@@ -1,1 +1,1 @@
-{"version":3,"file":"create-especialidad.dto.js","sourceRoot":"","sources":["../../../src/especialidad/dto/create-especialidad.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,qBAAqB;CAAG;AAArC,sDAAqC"}
+{"version":3,"file":"create-especialidad.dto.js","sourceRoot":"","sources":["../../../src/especialidad/dto/create-especialidad.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,qBAAqB;IAGxB,oBAAoB,CAAC,MAAa;QACvC,MAAM,GAAG,IAAI,CAAC,MAAM,CAAC;IACvB,CAAC;CAEH;AAPD,sDAOC"}

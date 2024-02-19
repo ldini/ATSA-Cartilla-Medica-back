@@ -13,6 +13,9 @@ exports.Especialidad = void 0;
 const institucion_entity_1 = require("../../institucion/entities/institucion.entity");
 const typeorm_1 = require("typeorm");
 let Especialidad = class Especialidad {
+    constructor(nombre) {
+        this.nombre = nombre;
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -23,12 +26,18 @@ __decorate([
     __metadata("design:type", String)
 ], Especialidad.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => institucion_entity_1.Institucion, institucion => institucion.especialidades),
+    (0, typeorm_1.ManyToMany)(() => institucion_entity_1.Institucion, institucion => institucion.especialidades_guardia, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinTable)({ name: 'guardias' }),
     __metadata("design:type", Array)
-], Especialidad.prototype, "instituciones", void 0);
+], Especialidad.prototype, "instituciones_guardia", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => institucion_entity_1.Institucion, institucion => institucion.especialidades_externo, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinTable)({ name: 'externos' }),
+    __metadata("design:type", Array)
+], Especialidad.prototype, "instituciones_externo", void 0);
 Especialidad = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    __metadata("design:paramtypes", [String])
 ], Especialidad);
 exports.Especialidad = Especialidad;
 //# sourceMappingURL=especialidad.entity.js.map

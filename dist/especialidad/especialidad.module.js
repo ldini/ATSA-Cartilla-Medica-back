@@ -13,11 +13,12 @@ const especialidad_controller_1 = require("./especialidad.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const prestador_entity_1 = require("../prestador/entities/prestador.entity");
 const institucion_entity_1 = require("../institucion/entities/institucion.entity");
+const especialidad_entity_1 = require("./entities/especialidad.entity");
 let EspecialidadModule = class EspecialidadModule {
 };
 EspecialidadModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([prestador_entity_1.Prestador, institucion_entity_1.Institucion])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([prestador_entity_1.Prestador, institucion_entity_1.Institucion, especialidad_entity_1.Especialidad])],
         controllers: [especialidad_controller_1.EspecialidadController],
         providers: [especialidad_service_1.EspecialidadService]
     })
